@@ -1,0 +1,2370 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Therapy Waiting List | רשימת המתנה לקלינאות תקשורת</title>
+    <meta name="description" content="Join the waiting list for professional speech therapy services. Bilingual support for Hebrew and English speakers.">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+
+    <style>
+        /* ========================================
+           CSS DESIGN SYSTEM
+           ======================================== */
+
+        :root {
+            /* Primary Colors - Teal */
+            --color-primary: #2A9D8F;
+            --color-primary-hover: #238B7E;
+            --color-primary-light: #E0F4F1;
+            --color-primary-dark: #1D7268;
+
+            /* Secondary Colors - Coral */
+            --color-secondary: #E9967A;
+            --color-secondary-hover: #E08565;
+            --color-secondary-light: #FDF5F0;
+
+            /* Semantic Colors */
+            --color-success: #1E7E34;
+            --color-success-bg: #E8F5E9;
+            --color-error: #C41E3A;
+            --color-error-bg: #FFEBEE;
+            --color-warning: #F59E0B;
+            --color-warning-bg: #FEF3C7;
+
+            /* Neutral Colors (warm grays) */
+            --color-text: #1a1a1a;
+            --color-text-secondary: #4a4a4a;
+            --color-text-muted: #666666;
+            --color-bg: #FAFAFA;
+            --color-bg-card: #FFFFFF;
+            --color-border: #E0E0E0;
+            --color-border-light: #F0F0F0;
+
+            /* Typography */
+            --font-hebrew: 'Assistant', sans-serif;
+            --font-english: 'Inter', sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --line-height-tight: 1.2;
+            --line-height-base: 1.5;
+            --line-height-relaxed: 1.75;
+
+            /* Spacing Scale (4px base) */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-2xl: 24px;
+            --radius-full: 9999px;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+            --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+            /* Focus Ring */
+            --focus-ring: 0 0 0 3px rgba(42, 157, 143, 0.4);
+
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-normal: 250ms ease;
+            --transition-slow: 350ms ease;
+        }
+
+        /* ========================================
+           BASE STYLES
+           ======================================== */
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        html[dir="ltr"] {
+            font-family: var(--font-english);
+        }
+
+        html[dir="rtl"] {
+            font-family: var(--font-hebrew);
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: var(--line-height-base);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: var(--space-4);
+            background: var(--color-primary);
+            color: white;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            z-index: 1000;
+            transition: top var(--transition-fast);
+        }
+
+        .skip-link:focus {
+            top: var(--space-4);
+            outline: none;
+            box-shadow: var(--focus-ring);
+        }
+
+        /* Screen Reader Only */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* ========================================
+           HEADER
+           ======================================== */
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border-light);
+            padding: var(--space-4) var(--space-6);
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .site-branding {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .site-logo {
+            width: 40px;
+            height: 40px;
+            background: var(--color-primary-light);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-primary);
+        }
+
+        .site-title {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .lang-toggle {
+            display: flex;
+            background: var(--color-border-light);
+            border-radius: var(--radius-full);
+            padding: var(--space-1);
+        }
+
+        .lang-toggle button {
+            padding: var(--space-2) var(--space-4);
+            border: none;
+            background: transparent;
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            color: var(--color-text-secondary);
+        }
+
+        .lang-toggle button[aria-pressed="true"] {
+            background: white;
+            color: var(--color-text);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .lang-toggle button:hover:not([aria-pressed="true"]) {
+            color: var(--color-text);
+        }
+
+        .lang-toggle button:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        /* ========================================
+           MAIN CONTENT
+           ======================================== */
+
+        main {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: var(--space-8) var(--space-4) var(--space-16);
+        }
+
+        /* ========================================
+           PROGRESS BAR
+           ======================================== */
+
+        .progress-container {
+            margin-bottom: var(--space-8);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-3);
+        }
+
+        .progress-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--color-border-light);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--color-primary);
+            border-radius: var(--radius-full);
+            transition: width var(--transition-slow);
+        }
+
+        .step-indicators {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--space-3);
+        }
+
+        .step-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: var(--radius-full);
+            background: var(--color-border);
+            transition: all var(--transition-fast);
+        }
+
+        .step-dot.active {
+            background: var(--color-primary);
+            transform: scale(1.2);
+        }
+
+        .step-dot.completed {
+            background: var(--color-primary);
+        }
+
+        /* ========================================
+           FORM CONTAINER
+           ======================================== */
+
+        .form-container {
+            background: var(--color-bg-card);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-card);
+            padding: var(--space-8);
+            border: 1px solid var(--color-border-light);
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: var(--space-6);
+                border-radius: var(--radius-xl);
+            }
+        }
+
+        /* ========================================
+           FORM STEPS
+           ======================================== */
+
+        .form-step {
+            display: none;
+            animation: fadeIn var(--transition-normal);
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+            color: var(--color-text);
+        }
+
+        .step-description {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-8);
+            line-height: var(--line-height-relaxed);
+        }
+
+        /* ========================================
+           FORM FIELDS
+           ======================================== */
+
+        .form-field {
+            margin-bottom: var(--space-6);
+        }
+
+        .form-field:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-2);
+        }
+
+        .required-mark {
+            color: var(--color-error);
+            margin-inline-start: var(--space-1);
+        }
+
+        .field-hint {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+            margin-top: var(--space-1);
+            margin-bottom: var(--space-2);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: var(--space-3) var(--space-4);
+            font-size: var(--font-size-base);
+            font-family: inherit;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            background: white;
+            color: var(--color-text);
+            transition: all var(--transition-fast);
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: var(--color-text-muted);
+        }
+
+        input:hover,
+        textarea:hover {
+            border-color: var(--color-text-muted);
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: var(--focus-ring);
+        }
+
+        /* Validation States */
+        .form-field.error input,
+        .form-field.error textarea {
+            border-color: var(--color-error);
+            background-color: var(--color-error-bg);
+        }
+
+        .form-field.success input,
+        .form-field.success textarea {
+            border-color: var(--color-success);
+        }
+
+        .error-message {
+            display: none;
+            font-size: var(--font-size-sm);
+            color: var(--color-error);
+            margin-top: var(--space-2);
+            align-items: center;
+            gap: var(--space-1);
+        }
+
+        .form-field.error .error-message {
+            display: flex;
+        }
+
+        .error-message .material-symbols-outlined {
+            font-size: 16px;
+        }
+
+        /* Textarea specific */
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .textarea-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: var(--space-2);
+        }
+
+        .char-counter {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        /* ========================================
+           RELATIONSHIP CARDS
+           ======================================== */
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        fieldset legend {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-3);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-3);
+        }
+
+        @media (max-width: 480px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .relationship-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-5);
+            background: var(--color-bg);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .relationship-card:hover {
+            border-color: var(--color-primary);
+            background: var(--color-primary-light);
+        }
+
+        .relationship-card:focus-visible {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: var(--focus-ring);
+        }
+
+        .relationship-card[aria-checked="true"] {
+            border-color: var(--color-primary);
+            background: var(--color-primary-light);
+        }
+
+        .relationship-card[aria-checked="true"] .card-icon {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-full);
+            background: var(--color-border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-secondary);
+            transition: all var(--transition-fast);
+        }
+
+        .card-icon .material-symbols-outlined {
+            font-size: 24px;
+        }
+
+        .card-label {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--color-text);
+            text-align: center;
+        }
+
+        .other-input-wrapper {
+            margin-top: var(--space-4);
+            display: none;
+        }
+
+        .other-input-wrapper.visible {
+            display: block;
+        }
+
+        /* ========================================
+           AGE SELECTOR
+           ======================================== */
+
+        .age-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+        }
+
+        .age-btn {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-4);
+            background: var(--color-bg);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            color: var(--color-text);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        .age-btn:hover {
+            border-color: var(--color-primary);
+            background: var(--color-primary-light);
+        }
+
+        .age-btn:focus-visible {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: var(--focus-ring);
+        }
+
+        .age-btn[aria-checked="true"] {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: white;
+        }
+
+        .age-icon {
+            font-size: var(--font-size-lg);
+        }
+
+        /* ========================================
+           TIME SLOT GRID
+           ======================================== */
+
+        .timeslot-section {
+            margin-top: var(--space-6);
+        }
+
+        .quick-select {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-bottom: var(--space-4);
+        }
+
+        .quick-btn {
+            padding: var(--space-2) var(--space-3);
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-xs);
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .quick-btn:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .quick-btn:focus-visible {
+            outline: none;
+            box-shadow: var(--focus-ring);
+        }
+
+        .timeslot-grid {
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .grid-header {
+            display: grid;
+            grid-template-columns: 100px 1fr 1fr;
+            background: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .grid-row {
+            display: grid;
+            grid-template-columns: 100px 1fr 1fr;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        .grid-row:last-child {
+            border-bottom: none;
+        }
+
+        .grid-cell {
+            padding: var(--space-3) var(--space-4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-cell {
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            text-align: center;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+
+        .header-cell small {
+            font-weight: 400;
+            color: var(--color-text-muted);
+        }
+
+        .day-cell {
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            color: var(--color-text);
+            justify-content: flex-start;
+            background: var(--color-bg);
+            border-inline-end: 1px solid var(--color-border-light);
+        }
+
+        .slot-cell {
+            padding: var(--space-2);
+        }
+
+        .slot-checkbox {
+            position: relative;
+        }
+
+        .slot-checkbox input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .slot-checkbox label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            margin: 0;
+        }
+
+        .slot-checkbox label .check-icon {
+            opacity: 0;
+            color: white;
+            transition: opacity var(--transition-fast);
+        }
+
+        .slot-checkbox input:hover + label {
+            border-color: var(--color-primary);
+            background: var(--color-primary-light);
+        }
+
+        .slot-checkbox input:focus-visible + label {
+            box-shadow: var(--focus-ring);
+        }
+
+        .slot-checkbox input:checked + label {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        .slot-checkbox input:checked + label .check-icon {
+            opacity: 1;
+        }
+
+        .selection-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--space-4);
+            padding: var(--space-3) var(--space-4);
+            background: var(--color-primary-light);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+        }
+
+        .selection-count {
+            font-weight: 600;
+            color: var(--color-primary-dark);
+        }
+
+        .min-slots-hint {
+            color: var(--color-text-secondary);
+        }
+
+        /* ========================================
+           REVIEW SECTION
+           ======================================== */
+
+        .review-card {
+            background: var(--color-bg);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: var(--space-6);
+        }
+
+        .review-section {
+            padding: var(--space-4);
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        .review-section:last-child {
+            border-bottom: none;
+        }
+
+        .review-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-2);
+        }
+
+        .review-section h3 {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--color-text-secondary);
+        }
+
+        .edit-link {
+            font-size: var(--font-size-sm);
+            color: var(--color-primary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+
+        .edit-link:hover {
+            background: var(--color-primary-light);
+        }
+
+        .edit-link:focus-visible {
+            outline: none;
+            box-shadow: var(--focus-ring);
+        }
+
+        .review-content {
+            font-size: var(--font-size-base);
+            color: var(--color-text);
+            line-height: var(--line-height-relaxed);
+        }
+
+        .review-content strong {
+            font-weight: 600;
+        }
+
+        /* Consent Checkbox */
+        .consent-field {
+            display: flex;
+            gap: var(--space-3);
+            padding: var(--space-4);
+            background: var(--color-secondary-light);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-6);
+        }
+
+        .consent-field input[type="checkbox"] {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            accent-color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        .consent-field label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+            margin: 0;
+            cursor: pointer;
+        }
+
+        /* ========================================
+           BUTTONS
+           ======================================== */
+
+        .button-group {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-8);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            font-family: inherit;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            border: 2px solid transparent;
+            text-decoration: none;
+        }
+
+        .btn:focus-visible {
+            outline: none;
+            box-shadow: var(--focus-ring);
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-hover);
+        }
+
+        .btn-primary:disabled {
+            background: var(--color-border);
+            color: var(--color-text-muted);
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text-secondary);
+            border-color: var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-text-muted);
+            color: var(--color-text);
+        }
+
+        .btn-lg {
+            padding: var(--space-4) var(--space-8);
+            font-size: var(--font-size-lg);
+        }
+
+        /* Loading state */
+        .btn-loading {
+            position: relative;
+            pointer-events: none;
+        }
+
+        .btn-loading .btn-text {
+            visibility: hidden;
+        }
+
+        .spinner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ========================================
+           SUCCESS MESSAGE
+           ======================================== */
+
+        .success-container {
+            display: none;
+            text-align: center;
+            padding: var(--space-8);
+        }
+
+        .success-container.active {
+            display: block;
+            animation: fadeIn var(--transition-normal);
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--color-success-bg);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-6);
+            color: var(--color-success);
+        }
+
+        .success-icon .material-symbols-outlined {
+            font-size: 40px;
+        }
+
+        .success-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: var(--space-3);
+        }
+
+        .success-message {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+            margin-bottom: var(--space-8);
+        }
+
+        .next-steps {
+            background: var(--color-bg);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            text-align: start;
+        }
+
+        .next-steps h3 {
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+        }
+
+        .next-steps ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .next-steps li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .next-steps li .material-symbols-outlined {
+            color: var(--color-primary);
+            flex-shrink: 0;
+        }
+
+        /* ========================================
+           ACCESSIBILITY
+           ======================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* High contrast focus indicators */
+        @media (prefers-contrast: high) {
+            :focus-visible {
+                outline: 3px solid currentColor !important;
+                outline-offset: 3px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link" data-i18n="accessibility.skipLink">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-content">
+            <div class="site-branding">
+                <div class="site-logo">
+                    <span class="material-symbols-outlined">record_voice_over</span>
+                </div>
+                <h1 class="site-title" data-i18n="header.title">Speech Therapy</h1>
+            </div>
+
+            <div class="lang-toggle" role="group" aria-label="Language selection">
+                <button type="button" data-lang="en" aria-pressed="true">EN</button>
+                <button type="button" data-lang="he" aria-pressed="false">עב</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Progress Bar -->
+        <div class="progress-container" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1">
+            <div class="progress-header">
+                <span class="progress-label" data-i18n="progress.label">Step <span id="current-step-num">1</span> of 5</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 20%"></div>
+            </div>
+            <div class="step-indicators">
+                <span class="step-dot active" data-step="1"></span>
+                <span class="step-dot" data-step="2"></span>
+                <span class="step-dot" data-step="3"></span>
+                <span class="step-dot" data-step="4"></span>
+                <span class="step-dot" data-step="5"></span>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="form-container">
+            <form id="waitlist-form" novalidate>
+
+                <!-- Step 1: Patient Info -->
+                <section class="form-step active" data-step="1" aria-labelledby="step1-title">
+                    <h2 id="step1-title" class="step-title" data-i18n="step1.title">Who is this for?</h2>
+                    <p class="step-description" data-i18n="step1.description">Tell us about the person who needs speech therapy services.</p>
+
+                    <!-- Full Name -->
+                    <div class="form-field" id="field-name">
+                        <label for="patient-name">
+                            <span data-i18n="step1.nameLabel">Patient's Full Name</span>
+                            <span class="required-mark" aria-hidden="true">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="patient-name"
+                            name="patientName"
+                            dir="auto"
+                            required
+                            aria-required="true"
+                            aria-describedby="name-error"
+                            autocomplete="name"
+                            data-i18n-placeholder="step1.namePlaceholder"
+                            placeholder="Enter full name"
+                        >
+                        <span id="name-error" class="error-message">
+                            <span class="material-symbols-outlined">error</span>
+                            <span data-i18n="step1.nameError">Please enter a name (at least 2 characters)</span>
+                        </span>
+                    </div>
+
+                    <!-- Relationship Cards -->
+                    <fieldset class="form-field" id="field-relationship">
+                        <legend>
+                            <span data-i18n="step1.relationshipLabel">Your relationship to the patient</span>
+                            <span class="required-mark" aria-hidden="true">*</span>
+                        </legend>
+                        <div class="card-grid" role="radiogroup" aria-required="true">
+                            <button type="button" class="relationship-card" data-value="self" role="radio" aria-checked="false">
+                                <span class="card-icon">
+                                    <span class="material-symbols-outlined">person</span>
+                                </span>
+                                <span class="card-label" data-i18n="step1.self">Self</span>
+                            </button>
+                            <button type="button" class="relationship-card" data-value="parent" role="radio" aria-checked="false">
+                                <span class="card-icon">
+                                    <span class="material-symbols-outlined">family_restroom</span>
+                                </span>
+                                <span class="card-label" data-i18n="step1.parent">Parent</span>
+                            </button>
+                            <button type="button" class="relationship-card" data-value="other" role="radio" aria-checked="false">
+                                <span class="card-icon">
+                                    <span class="material-symbols-outlined">group</span>
+                                </span>
+                                <span class="card-label" data-i18n="step1.other">Other</span>
+                            </button>
+                        </div>
+                        <input type="hidden" name="relationship" id="relationship-value">
+                        <span id="relationship-error" class="error-message">
+                            <span class="material-symbols-outlined">error</span>
+                            <span data-i18n="step1.relationshipError">Please select your relationship</span>
+                        </span>
+
+                        <!-- Other Input -->
+                        <div class="other-input-wrapper" id="other-relationship-wrapper">
+                            <label for="other-relationship-text" data-i18n="step1.otherLabel">Please specify</label>
+                            <input
+                                type="text"
+                                id="other-relationship-text"
+                                name="otherRelationship"
+                                dir="auto"
+                                data-i18n-placeholder="step1.otherPlaceholder"
+                                placeholder="e.g., Teacher, Caregiver"
+                            >
+                        </div>
+                    </fieldset>
+
+                    <!-- Navigation -->
+                    <div class="button-group">
+                        <button type="button" class="btn btn-primary" onclick="goToStep(2)" data-i18n="buttons.next">
+                            Continue
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Step 2: Contact Info -->
+                <section class="form-step" data-step="2" aria-labelledby="step2-title">
+                    <h2 id="step2-title" class="step-title" data-i18n="step2.title">How can we reach you?</h2>
+                    <p class="step-description" data-i18n="step2.description">We'll use this information to contact you about appointments.</p>
+
+                    <!-- Phone Number -->
+                    <div class="form-field" id="field-phone">
+                        <label for="phone">
+                            <span data-i18n="step2.phoneLabel">Phone Number</span>
+                            <span class="required-mark" aria-hidden="true">*</span>
+                        </label>
+                        <p class="field-hint" data-i18n="step2.phoneHint">Israeli mobile format (05X-XXX-XXXX)</p>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            dir="ltr"
+                            inputmode="tel"
+                            required
+                            aria-required="true"
+                            aria-describedby="phone-hint phone-error"
+                            autocomplete="tel"
+                            placeholder="050-000-0000"
+                        >
+                        <span id="phone-error" class="error-message">
+                            <span class="material-symbols-outlined">error</span>
+                            <span data-i18n="step2.phoneError">Please enter a valid Israeli mobile number</span>
+                        </span>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-field" id="field-email">
+                        <label for="email">
+                            <span data-i18n="step2.emailLabel">Email Address</span>
+                            <span class="required-mark" aria-hidden="true">*</span>
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            dir="ltr"
+                            inputmode="email"
+                            required
+                            aria-required="true"
+                            aria-describedby="email-error"
+                            autocomplete="email"
+                            placeholder="example@email.com"
+                        >
+                        <span id="email-error" class="error-message">
+                            <span class="material-symbols-outlined">error</span>
+                            <span data-i18n="step2.emailError">Please enter a valid email address</span>
+                        </span>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="goToStep(1)">
+                            <span class="material-symbols-outlined">arrow_back</span>
+                            <span data-i18n="buttons.back">Back</span>
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="goToStep(3)" data-i18n="buttons.next">
+                            Continue
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Step 3: Concerns -->
+                <section class="form-step" data-step="3" aria-labelledby="step3-title">
+                    <h2 id="step3-title" class="step-title" data-i18n="step3.title">Tell us about the concern</h2>
+                    <p class="step-description" data-i18n="step3.description">This helps us understand how we can best help.</p>
+
+                    <!-- Age Selector -->
+                    <fieldset class="form-field" id="field-age">
+                        <legend>
+                            <span data-i18n="step3.ageLabel">Patient's Age Group</span>
+                            <span class="required-mark" aria-hidden="true">*</span>
+                        </legend>
+                        <div class="age-buttons" role="radiogroup" aria-required="true">
+                            <button type="button" class="age-btn" data-value="0-2" role="radio" aria-checked="false">
+                                <span class="age-icon">👶</span>
+                                <span data-i18n="step3.infant">Infant (0-2)</span>
+                            </button>
+                            <button type="button" class="age-btn" data-value="3-5" role="radio" aria-checked="false">
+                                <span class="age-icon">💒</span>
+                                <span data-i18n="step3.preschool">Preschool (3-5)</span>
+                            </button>
+                            <button type="button" class="age-btn" data-value="6-12" role="radio" aria-checked="false">
+                                <span class="age-icon">🎒</span>
+                                <span data-i18n="step3.schoolAge">School (6-12)</span>
+                            </button>
+                            <button type="button" class="age-btn" data-value="13-17" role="radio" aria-checked="false">
+                                <span class="age-icon">🧑</span>
+                                <span data-i18n="step3.teen">Teen (13-17)</span>
+                            </button>
+                            <button type="button" class="age-btn" data-value="18+" role="radio" aria-checked="false">
+                                <span class="age-icon">🧑‍🦱</span>
+                                <span data-i18n="step3.adult">Adult (18+)</span>
+                            </button>
+                        </div>
+                        <input type="hidden" name="ageGroup" id="age-group-value">
+                        <span id="age-error" class="error-message">
+                            <span class="material-symbols-outlined">error</span>
+                            <span data-i18n="step3.ageError">Please select an age group</span>
+                        </span>
+                    </fieldset>
+
+                    <!-- Concerns Textarea -->
+                    <div class="form-field" id="field-concerns">
+                        <label for="concerns" data-i18n="step3.concernsLabel">Describe the speech or communication challenges</label>
+                        <p class="field-hint" data-i18n="step3.concernsHint">For example: difficulty pronouncing sounds, stuttering, late talking, voice concerns (optional)</p>
+                        <textarea
+                            id="concerns"
+                            name="concerns"
+                            dir="auto"
+                            rows="4"
+                            maxlength="1000"
+                            aria-describedby="concerns-hint concerns-counter"
+                            data-i18n-placeholder="step3.concernsPlaceholder"
+                            placeholder="Tell us more about the challenges..."
+                        ></textarea>
+                        <div class="textarea-footer">
+                            <span id="concerns-counter" class="char-counter">1000 <span data-i18n="step3.charsRemaining">characters remaining</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="goToStep(2)">
+                            <span class="material-symbols-outlined">arrow_back</span>
+                            <span data-i18n="buttons.back">Back</span>
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="goToStep(4)" data-i18n="buttons.next">
+                            Continue
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Step 4: Availability -->
+                <section class="form-step" data-step="4" aria-labelledby="step4-title">
+                    <h2 id="step4-title" class="step-title" data-i18n="step4.title">When works for you?</h2>
+                    <p class="step-description" data-i18n="step4.description">Select time slots that fit your schedule (at least 2).</p>
+
+                    <!-- Quick Select Buttons -->
+                    <div class="quick-select">
+                        <button type="button" class="quick-btn" data-select="mornings" data-i18n="step4.allMornings">All Mornings</button>
+                        <button type="button" class="quick-btn" data-select="middays" data-i18n="step4.allMiddays">All Middays</button>
+                        <button type="button" class="quick-btn" data-select="clear" data-i18n="step4.clearAll">Clear All</button>
+                    </div>
+
+                    <!-- Time Slot Grid -->
+                    <div class="timeslot-grid" role="grid" aria-label="Available time slots">
+                        <div class="grid-header">
+                            <div class="grid-cell header-cell"></div>
+                            <div class="grid-cell header-cell">
+                                <span>☀️</span>
+                                <span data-i18n="step4.morning">Morning</span>
+                                <small>8:15 - 11:00</small>
+                            </div>
+                            <div class="grid-cell header-cell">
+                                <span>🌤️</span>
+                                <span data-i18n="step4.midday">Midday</span>
+                                <small>11:00 - 14:30</small>
+                            </div>
+                        </div>
+
+                        <div class="grid-row" data-day="sun">
+                            <div class="grid-cell day-cell" data-i18n="step4.sunday">Sunday</div>
+                            <div class="grid-cell slot-cell">
+                                <div class="slot-checkbox">
+                                    <input type="checkbox" id="sun-morning" name="slots" value="sun-morning">
+                                    <label for="sun-morning">
+                                        <span class="check-icon material-symbols-outlined">check</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="grid-cell slot-cell">
+                                <div class="slot-checkbox">
+                                    <input type="checkbox" id="sun-midday" name="slots" value="sun-midday">
+                                    <label for="sun-midday">
+                                        <span class="check-icon material-symbols-outlined">check</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid-row" data-day="mon">
+                            <div class="grid-cell day-cell" data-i18n="step4.monday">Monday</div>
+                            <div class="grid-cell slot-cell">
+                                <div class="slot-checkbox">
+                                    <input type="checkbox" id="mon-morning" name="slots" value="mon-morning">
+                                    <label for="mon-morning">
+                                        <span class="check-icon material-symbols-outlined">check</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="grid-cell slot-cell">
+                                <div class="slot-checkbox">
+                                    <input type="checkbox" id="mon-midday" name="slots" value="mon-midday">
+                                    <label for="mon-midday">
+                                        <span class="check-icon material-symbols-outlined">check</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid-row" data-day="tue">
+                            <div class="grid-cell day-cell" data-i18n="step4.tuesday">Tuesday</div>
+                            <div class="grid-cell slot-cell">
+                                <div class="slot-checkbox">
+                                    <input type="checkbox" id="tue-morning" name="slots" value="tue-morning">
+                                    <label for="tue-morning">
+                                        <span class="check-icon material-symbols-outlined">check</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="grid-cell slot-cell">
+                                <div class="slot-checkbox">
+                                    <input type="checkbox" id="tue-midday" name="slots" value="tue-midday">
+                                    <label for="tue-midday">
+                                        <span class="check-icon material-symbols-outlined">check</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid-row" data-day="wed">
+                            <div class="grid-cell day-cell" data-i18n="step4.wednesday">Wednesday</div>
+                            <div class="grid-cell slot-cell">
+                                <div class="slot-checkbox">
+                                    <input type="checkbox" id="wed-morning" name="slots" value="wed-morning">
+                                    <label for="wed-morning">
+                                        <span class="check-icon material-symbols-outlined">check</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="grid-cell slot-cell">
+                                <div class="slot-checkbox">
+                                    <input type="checkbox" id="wed-midday" name="slots" value="wed-midday">
+                                    <label for="wed-midday">
+                                        <span class="check-icon material-symbols-outlined">check</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid-row" data-day="thu">
+                            <div class="grid-cell day-cell" data-i18n="step4.thursday">Thursday</div>
+                            <div class="grid-cell slot-cell">
+                                <div class="slot-checkbox">
+                                    <input type="checkbox" id="thu-morning" name="slots" value="thu-morning">
+                                    <label for="thu-morning">
+                                        <span class="check-icon material-symbols-outlined">check</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="grid-cell slot-cell">
+                                <div class="slot-checkbox">
+                                    <input type="checkbox" id="thu-midday" name="slots" value="thu-midday">
+                                    <label for="thu-midday">
+                                        <span class="check-icon material-symbols-outlined">check</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Selection Info -->
+                    <div class="selection-info">
+                        <span class="selection-count"><span id="slot-count">0</span> <span data-i18n="step4.slotsSelected">selected</span></span>
+                        <span class="min-slots-hint" data-i18n="step4.minSlots">Minimum 2 required</span>
+                    </div>
+                    <span id="slots-error" class="error-message">
+                        <span class="material-symbols-outlined">error</span>
+                        <span data-i18n="step4.slotsError">Please select at least 2 time slots</span>
+                    </span>
+
+                    <!-- Navigation -->
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="goToStep(3)">
+                            <span class="material-symbols-outlined">arrow_back</span>
+                            <span data-i18n="buttons.back">Back</span>
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="goToStep(5)" data-i18n="buttons.next">
+                            Continue
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Step 5: Review & Submit -->
+                <section class="form-step" data-step="5" aria-labelledby="step5-title">
+                    <h2 id="step5-title" class="step-title" data-i18n="step5.title">Review & Submit</h2>
+                    <p class="step-description" data-i18n="step5.description">Please review your information before submitting.</p>
+
+                    <!-- Review Card -->
+                    <div class="review-card">
+                        <div class="review-section">
+                            <div class="review-section-header">
+                                <h3 data-i18n="step5.patientInfo">Patient Information</h3>
+                                <button type="button" class="edit-link" onclick="goToStep(1)" data-i18n="step5.edit">Edit</button>
+                            </div>
+                            <p id="review-patient" class="review-content"></p>
+                        </div>
+
+                        <div class="review-section">
+                            <div class="review-section-header">
+                                <h3 data-i18n="step5.contactInfo">Contact Information</h3>
+                                <button type="button" class="edit-link" onclick="goToStep(2)" data-i18n="step5.edit">Edit</button>
+                            </div>
+                            <p id="review-contact" class="review-content"></p>
+                        </div>
+
+                        <div class="review-section">
+                            <div class="review-section-header">
+                                <h3 data-i18n="step5.concerns">Concerns</h3>
+                                <button type="button" class="edit-link" onclick="goToStep(3)" data-i18n="step5.edit">Edit</button>
+                            </div>
+                            <p id="review-concerns" class="review-content"></p>
+                        </div>
+
+                        <div class="review-section">
+                            <div class="review-section-header">
+                                <h3 data-i18n="step5.availability">Availability</h3>
+                                <button type="button" class="edit-link" onclick="goToStep(4)" data-i18n="step5.edit">Edit</button>
+                            </div>
+                            <p id="review-availability" class="review-content"></p>
+                        </div>
+                    </div>
+
+                    <!-- Consent -->
+                    <div class="consent-field">
+                        <input type="checkbox" id="consent" name="consent" required aria-required="true" aria-describedby="consent-error">
+                        <label for="consent" data-i18n="step5.consentLabel">I agree to be contacted about appointments and understand my information will be used for scheduling purposes only.</label>
+                    </div>
+                    <span id="consent-error" class="error-message" style="margin-top: -1rem; margin-bottom: 1rem;">
+                        <span class="material-symbols-outlined">error</span>
+                        <span data-i18n="step5.consentError">Please agree to continue</span>
+                    </span>
+
+                    <!-- Navigation -->
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="goToStep(4)">
+                            <span class="material-symbols-outlined">arrow_back</span>
+                            <span data-i18n="buttons.back">Back</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">
+                            <span class="btn-text" data-i18n="step5.submit">Join Waiting List</span>
+                            <span class="spinner" style="display: none;"></span>
+                        </button>
+                    </div>
+                </section>
+            </form>
+
+            <!-- Success Message -->
+            <div class="success-container" id="success-container">
+                <div class="success-icon">
+                    <span class="material-symbols-outlined">check_circle</span>
+                </div>
+                <h2 class="success-title" data-i18n="success.title">You're on the list!</h2>
+                <p class="success-message" data-i18n="success.message">Thank you for your interest in our speech therapy services. We've received your information and will be in touch soon.</p>
+
+                <div class="next-steps">
+                    <h3 data-i18n="success.nextStepsTitle">What happens next?</h3>
+                    <ul>
+                        <li>
+                            <span class="material-symbols-outlined">mail</span>
+                            <span data-i18n="success.step1">You'll receive a confirmation email shortly</span>
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">phone_in_talk</span>
+                            <span data-i18n="success.step2">Our team will call within 2-3 business days</span>
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">calendar_month</span>
+                            <span data-i18n="success.step3">We'll schedule an initial consultation</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Live Region for Screen Reader Announcements -->
+    <div id="announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <script>
+        // ========================================
+        // APPLICATION STATE
+        // ========================================
+
+        const state = {
+            currentStep: 1,
+            totalSteps: 5,
+            language: localStorage.getItem('lang') || 'en',
+            formData: {},
+            isSubmitting: false
+        };
+
+        // ========================================
+        // TRANSLATIONS
+        // ========================================
+
+        const translations = {
+            en: {
+                'header.title': 'Speech Therapy',
+                'progress.label': 'Step {step} of 5',
+                'accessibility.skipLink': 'Skip to main content',
+
+                // Step 1
+                'step1.title': 'Who is this for?',
+                'step1.description': 'Tell us about the person who needs speech therapy services.',
+                'step1.nameLabel': "Patient's Full Name",
+                'step1.namePlaceholder': 'Enter full name',
+                'step1.nameError': 'Please enter a name (at least 2 characters)',
+                'step1.relationshipLabel': 'Your relationship to the patient',
+                'step1.relationshipError': 'Please select your relationship',
+                'step1.self': 'Self',
+                'step1.parent': 'Parent',
+                'step1.other': 'Other',
+                'step1.otherLabel': 'Please specify',
+                'step1.otherPlaceholder': 'e.g., Teacher, Caregiver',
+
+                // Step 2
+                'step2.title': 'How can we reach you?',
+                'step2.description': "We'll use this information to contact you about appointments.",
+                'step2.phoneLabel': 'Phone Number',
+                'step2.phoneHint': 'Israeli mobile format (05X-XXX-XXXX)',
+                'step2.phoneError': 'Please enter a valid Israeli mobile number',
+                'step2.emailLabel': 'Email Address',
+                'step2.emailError': 'Please enter a valid email address',
+
+                // Step 3
+                'step3.title': 'Tell us about the concern',
+                'step3.description': 'This helps us understand how we can best help.',
+                'step3.ageLabel': "Patient's Age Group",
+                'step3.ageError': 'Please select an age group',
+                'step3.infant': 'Infant (0-2)',
+                'step3.preschool': 'Preschool (3-5)',
+                'step3.schoolAge': 'School (6-12)',
+                'step3.teen': 'Teen (13-17)',
+                'step3.adult': 'Adult (18+)',
+                'step3.concernsLabel': 'Describe the speech or communication challenges',
+                'step3.concernsHint': 'For example: difficulty pronouncing sounds, stuttering, late talking, voice concerns (optional)',
+                'step3.concernsPlaceholder': 'Tell us more about the challenges...',
+                'step3.charsRemaining': 'characters remaining',
+
+                // Step 4
+                'step4.title': 'When works for you?',
+                'step4.description': 'Select time slots that fit your schedule (at least 2).',
+                'step4.allMornings': 'All Mornings',
+                'step4.allMiddays': 'All Middays',
+                'step4.clearAll': 'Clear All',
+                'step4.morning': 'Morning',
+                'step4.midday': 'Midday',
+                'step4.sunday': 'Sunday',
+                'step4.monday': 'Monday',
+                'step4.tuesday': 'Tuesday',
+                'step4.wednesday': 'Wednesday',
+                'step4.thursday': 'Thursday',
+                'step4.slotsSelected': 'selected',
+                'step4.minSlots': 'Minimum 2 required',
+                'step4.slotsError': 'Please select at least 2 time slots',
+
+                // Step 5
+                'step5.title': 'Review & Submit',
+                'step5.description': 'Please review your information before submitting.',
+                'step5.patientInfo': 'Patient Information',
+                'step5.contactInfo': 'Contact Information',
+                'step5.concerns': 'Concerns',
+                'step5.availability': 'Availability',
+                'step5.edit': 'Edit',
+                'step5.consentLabel': 'I agree to be contacted about appointments and understand my information will be used for scheduling purposes only.',
+                'step5.consentError': 'Please agree to continue',
+                'step5.submit': 'Join Waiting List',
+
+                // Success
+                'success.title': "You're on the list!",
+                'success.message': "Thank you for your interest in our speech therapy services. We've received your information and will be in touch soon.",
+                'success.nextStepsTitle': 'What happens next?',
+                'success.step1': "You'll receive a confirmation email shortly",
+                'success.step2': 'Our team will call within 2-3 business days',
+                'success.step3': "We'll schedule an initial consultation",
+
+                // Buttons
+                'buttons.next': 'Continue',
+                'buttons.back': 'Back',
+
+                // Review formatting
+                'review.name': 'Name',
+                'review.relationship': 'Relationship',
+                'review.phone': 'Phone',
+                'review.email': 'Email',
+                'review.ageGroup': 'Age group',
+                'review.description': 'Description',
+                'review.notProvided': 'Not provided',
+                'review.timeslots': 'Available times'
+            },
+            he: {
+                'header.title': 'קלינאות תקשורת',
+                'progress.label': 'שלב {step} מתוך 5',
+                'accessibility.skipLink': 'דלג לתוכן הראשי',
+
+                // Step 1
+                'step1.title': 'למי זה מיועד?',
+                'step1.description': 'ספרו לנו על מי שזקוק לשירותי קלינאות תקשורת.',
+                'step1.nameLabel': 'שם מלא של המטופל/ת',
+                'step1.namePlaceholder': 'הזינו שם מלא',
+                'step1.nameError': 'אנא הזינו שם (לפחות 2 תווים)',
+                'step1.relationshipLabel': 'הקשר שלכם למטופל/ת',
+                'step1.relationshipError': 'אנא בחרו את הקשר שלכם',
+                'step1.self': 'עצמי',
+                'step1.parent': 'הורה',
+                'step1.other': 'אחר',
+                'step1.otherLabel': 'נא לפרט',
+                'step1.otherPlaceholder': 'לדוגמה: מורה, מטפל',
+
+                // Step 2
+                'step2.title': 'איך ניתן ליצור איתכם קשר?',
+                'step2.description': 'נשתמש בפרטים אלה כדי ליצור איתכם קשר לגבי תורים.',
+                'step2.phoneLabel': 'מספר טלפון',
+                'step2.phoneHint': 'פורמט נייד ישראלי (05X-XXX-XXXX)',
+                'step2.phoneError': 'אנא הזינו מספר נייד ישראלי תקין',
+                'step2.emailLabel': 'כתובת אימייל',
+                'step2.emailError': 'אנא הזינו כתובת אימייל תקינה',
+
+                // Step 3
+                'step3.title': 'ספרו לנו על הקושי',
+                'step3.description': 'זה עוזר לנו להבין איך נוכל לעזור בצורה הטובה ביותר.',
+                'step3.ageLabel': 'קבוצת הגיל של המטופל/ת',
+                'step3.ageError': 'אנא בחרו קבוצת גיל',
+                'step3.infant': 'תינוק (0-2)',
+                'step3.preschool': 'גיל הגן (3-5)',
+                'step3.schoolAge': 'גיל בית ספר (6-12)',
+                'step3.teen': 'נוער (13-17)',
+                'step3.adult': 'מבוגר (18+)',
+                'step3.concernsLabel': 'תארו את קשיי הדיבור או התקשורת',
+                'step3.concernsHint': 'לדוגמה: קושי בהגיית צלילים, גמגום, דיבור מאוחר, בעיות קול (אופציונלי)',
+                'step3.concernsPlaceholder': 'ספרו לנו עוד על האתגרים...',
+                'step3.charsRemaining': 'תווים נותרו',
+
+                // Step 4
+                'step4.title': 'מתי מתאים לכם?',
+                'step4.description': 'בחרו שעות שמתאימות ללוח הזמנים שלכם (לפחות 2).',
+                'step4.allMornings': 'כל הבקרים',
+                'step4.allMiddays': 'כל הצהריים',
+                'step4.clearAll': 'נקה הכל',
+                'step4.morning': 'בוקר',
+                'step4.midday': 'צהריים',
+                'step4.sunday': 'יום א׳',
+                'step4.monday': 'יום ב׳',
+                'step4.tuesday': 'יום ג׳',
+                'step4.wednesday': 'יום ד׳',
+                'step4.thursday': 'יום ה׳',
+                'step4.slotsSelected': 'נבחרו',
+                'step4.minSlots': 'נדרשים לפחות 2',
+                'step4.slotsError': 'אנא בחרו לפחות 2 משבצות זמן',
+
+                // Step 5
+                'step5.title': 'סקירה ושליחה',
+                'step5.description': 'אנא בדקו את הפרטים לפני השליחה.',
+                'step5.patientInfo': 'פרטי המטופל/ת',
+                'step5.contactInfo': 'פרטי התקשרות',
+                'step5.concerns': 'תיאור הקושי',
+                'step5.availability': 'זמינות',
+                'step5.edit': 'ערוך',
+                'step5.consentLabel': 'אני מסכים/ה לקבל פניות לגבי תורים ומבין/ה שהמידע שלי ישמש לצורכי תיאום בלבד.',
+                'step5.consentError': 'אנא אשרו כדי להמשיך',
+                'step5.submit': 'הצטרפו לרשימת ההמתנה',
+
+                // Success
+                'success.title': 'אתם ברשימה!',
+                'success.message': 'תודה על ההתעניינות בשירותי קלינאות התקשורת שלנו. קיבלנו את הפרטים שלכם וניצור קשר בקרוב.',
+                'success.nextStepsTitle': 'מה קורה עכשיו?',
+                'success.step1': 'תקבלו אימייל אישור בקרוב',
+                'success.step2': 'הצוות שלנו יתקשר תוך 2-3 ימי עסקים',
+                'success.step3': 'נקבע פגישת היכרות ראשונית',
+
+                // Buttons
+                'buttons.next': 'המשך',
+                'buttons.back': 'חזרה',
+
+                // Review formatting
+                'review.name': 'שם',
+                'review.relationship': 'קשר',
+                'review.phone': 'טלפון',
+                'review.email': 'אימייל',
+                'review.ageGroup': 'קבוצת גיל',
+                'review.description': 'תיאור',
+                'review.notProvided': 'לא צוין',
+                'review.timeslots': 'זמנים זמינים'
+            }
+        };
+
+        // ========================================
+        // INTERNATIONALIZATION
+        // ========================================
+
+        function t(key, replacements = {}) {
+            let text = translations[state.language][key] || translations.en[key] || key;
+            Object.entries(replacements).forEach(([k, v]) => {
+                text = text.replace(`{${k}}`, v);
+            });
+            return text;
+        }
+
+        function setLanguage(lang) {
+            state.language = lang;
+            localStorage.setItem('lang', lang);
+
+            // Update document direction and lang
+            document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+
+            // Update language toggle buttons
+            document.querySelectorAll('.lang-toggle button').forEach(btn => {
+                btn.setAttribute('aria-pressed', btn.dataset.lang === lang);
+            });
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                if (key === 'progress.label') {
+                    el.innerHTML = t(key, { step: `<span id="current-step-num">${state.currentStep}</span>` });
+                } else {
+                    el.textContent = t(key);
+                }
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                el.placeholder = t(el.dataset.i18nPlaceholder);
+            });
+
+            // Update review if on step 5
+            if (state.currentStep === 5) {
+                populateReview();
+            }
+
+            announce(lang === 'he' ? 'השפה שונתה לעברית' : 'Language changed to English');
+        }
+
+        // ========================================
+        // FORM NAVIGATION
+        // ========================================
+
+        function goToStep(stepNumber) {
+            if (stepNumber < 1 || stepNumber > state.totalSteps) return;
+
+            // Validate current step before advancing
+            if (stepNumber > state.currentStep) {
+                if (!validateStep(state.currentStep)) {
+                    return;
+                }
+            }
+
+            state.currentStep = stepNumber;
+
+            // Update form steps visibility
+            document.querySelectorAll('.form-step').forEach(step => {
+                const stepNum = parseInt(step.dataset.step);
+                step.classList.toggle('active', stepNum === stepNumber);
+            });
+
+            // Update progress bar
+            updateProgress();
+
+            // Populate review if on step 5
+            if (stepNumber === 5) {
+                populateReview();
+            }
+
+            // Focus first interactive element
+            setTimeout(() => {
+                const activeStep = document.querySelector('.form-step.active');
+                const firstInput = activeStep.querySelector('input, button, textarea');
+                if (firstInput) firstInput.focus();
+            }, 100);
+
+            // Announce step change
+            announce(t('progress.label', { step: stepNumber }));
+
+            // Save draft
+            saveDraft();
+        }
+
+        function updateProgress() {
+            const progress = (state.currentStep / state.totalSteps) * 100;
+            document.querySelector('.progress-fill').style.width = `${progress}%`;
+
+            document.querySelectorAll('.step-dot').forEach(dot => {
+                const dotStep = parseInt(dot.dataset.step);
+                dot.classList.toggle('active', dotStep === state.currentStep);
+                dot.classList.toggle('completed', dotStep < state.currentStep);
+            });
+
+            document.querySelector('.progress-container').setAttribute('aria-valuenow', state.currentStep);
+
+            const progressLabel = document.querySelector('.progress-label');
+            progressLabel.innerHTML = t('progress.label', { step: `<span id="current-step-num">${state.currentStep}</span>` });
+        }
+
+        // ========================================
+        // VALIDATION
+        // ========================================
+
+        const validators = {
+            name: (value) => value.trim().length >= 2,
+            phone: (value) => /^0[5][0-9][-\s]?[0-9]{3}[-\s]?[0-9]{4}$/.test(value.replace(/\s/g, '')),
+            email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+            slots: () => getSelectedSlots().length >= 2,
+            consent: () => document.getElementById('consent').checked
+        };
+
+        function validateStep(stepNumber) {
+            clearErrors();
+            let isValid = true;
+
+            switch (stepNumber) {
+                case 1:
+                    const name = document.getElementById('patient-name').value;
+                    const relationship = document.getElementById('relationship-value').value;
+
+                    if (!validators.name(name)) {
+                        showError('field-name');
+                        isValid = false;
+                    }
+                    if (!relationship) {
+                        showError('field-relationship');
+                        isValid = false;
+                    }
+                    break;
+
+                case 2:
+                    const phone = document.getElementById('phone').value;
+                    const email = document.getElementById('email').value;
+
+                    if (!validators.phone(phone)) {
+                        showError('field-phone');
+                        isValid = false;
+                    }
+                    if (!validators.email(email)) {
+                        showError('field-email');
+                        isValid = false;
+                    }
+                    break;
+
+                case 3:
+                    const age = document.getElementById('age-group-value').value;
+                    if (!age) {
+                        showError('field-age');
+                        isValid = false;
+                    }
+                    break;
+
+                case 4:
+                    if (!validators.slots()) {
+                        document.getElementById('slots-error').style.display = 'flex';
+                        isValid = false;
+                    }
+                    break;
+
+                case 5:
+                    if (!validators.consent()) {
+                        document.getElementById('consent-error').style.display = 'flex';
+                        isValid = false;
+                    }
+                    break;
+            }
+
+            return isValid;
+        }
+
+        function showError(fieldId) {
+            document.getElementById(fieldId).classList.add('error');
+        }
+
+        function clearErrors() {
+            document.querySelectorAll('.form-field.error').forEach(el => el.classList.remove('error'));
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+        }
+
+        // ========================================
+        // FORM FIELD HANDLERS
+        // ========================================
+
+        // Relationship cards
+        function setupRelationshipCards() {
+            document.querySelectorAll('.relationship-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    // Deselect all
+                    document.querySelectorAll('.relationship-card').forEach(c => {
+                        c.setAttribute('aria-checked', 'false');
+                    });
+                    // Select clicked
+                    card.setAttribute('aria-checked', 'true');
+                    document.getElementById('relationship-value').value = card.dataset.value;
+
+                    // Show/hide other input
+                    const otherWrapper = document.getElementById('other-relationship-wrapper');
+                    if (card.dataset.value === 'other') {
+                        otherWrapper.classList.add('visible');
+                        document.getElementById('other-relationship-text').focus();
+                    } else {
+                        otherWrapper.classList.remove('visible');
+                    }
+
+                    clearErrors();
+                });
+
+                // Keyboard support
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        card.click();
+                    }
+                });
+            });
+        }
+
+        // Age buttons
+        function setupAgeButtons() {
+            document.querySelectorAll('.age-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.age-btn').forEach(b => {
+                        b.setAttribute('aria-checked', 'false');
+                    });
+                    btn.setAttribute('aria-checked', 'true');
+                    document.getElementById('age-group-value').value = btn.dataset.value;
+                    clearErrors();
+                });
+
+                btn.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        btn.click();
+                    }
+                });
+            });
+        }
+
+        // Phone formatting
+        function setupPhoneFormatting() {
+            const phoneInput = document.getElementById('phone');
+            phoneInput.addEventListener('input', () => {
+                let value = phoneInput.value.replace(/\D/g, '');
+                if (value.length > 3 && value.length <= 6) {
+                    value = value.slice(0, 3) + '-' + value.slice(3);
+                } else if (value.length > 6) {
+                    value = value.slice(0, 3) + '-' + value.slice(3, 6) + '-' + value.slice(6, 10);
+                }
+                phoneInput.value = value;
+            });
+        }
+
+        // Character counter
+        function setupCharCounter() {
+            const textarea = document.getElementById('concerns');
+            const counter = document.getElementById('concerns-counter');
+
+            textarea.addEventListener('input', () => {
+                const remaining = 1000 - textarea.value.length;
+                counter.innerHTML = `${remaining} <span data-i18n="step3.charsRemaining">${t('step3.charsRemaining')}</span>`;
+            });
+        }
+
+        // Time slot grid
+        function setupTimeSlotGrid() {
+            const checkboxes = document.querySelectorAll('.slot-checkbox input');
+
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', updateSlotCount);
+            });
+
+            // Quick select buttons
+            document.querySelectorAll('.quick-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const action = btn.dataset.select;
+
+                    if (action === 'clear') {
+                        checkboxes.forEach(cb => cb.checked = false);
+                    } else if (action === 'mornings') {
+                        checkboxes.forEach(cb => {
+                            if (cb.value.includes('morning')) cb.checked = true;
+                        });
+                    } else if (action === 'middays') {
+                        checkboxes.forEach(cb => {
+                            if (cb.value.includes('midday')) cb.checked = true;
+                        });
+                    }
+
+                    updateSlotCount();
+                });
+            });
+        }
+
+        function getSelectedSlots() {
+            return Array.from(document.querySelectorAll('.slot-checkbox input:checked')).map(cb => cb.value);
+        }
+
+        function updateSlotCount() {
+            const count = getSelectedSlots().length;
+            document.getElementById('slot-count').textContent = count;
+
+            // Hide error if enough slots selected
+            if (count >= 2) {
+                document.getElementById('slots-error').style.display = 'none';
+            }
+        }
+
+        // ========================================
+        // REVIEW POPULATION
+        // ========================================
+
+        function populateReview() {
+            const name = document.getElementById('patient-name').value;
+            const relationship = document.getElementById('relationship-value').value;
+            const otherRelationship = document.getElementById('other-relationship-text').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const age = document.getElementById('age-group-value').value;
+            const concerns = document.getElementById('concerns').value;
+            const slots = getSelectedSlots();
+
+            // Patient info
+            let relationshipText = t(`step1.${relationship}`) || relationship;
+            if (relationship === 'other' && otherRelationship) {
+                relationshipText = otherRelationship;
+            }
+            document.getElementById('review-patient').innerHTML = `
+                <strong>${t('review.name')}:</strong> ${name}<br>
+                <strong>${t('review.relationship')}:</strong> ${relationshipText}
+            `;
+
+            // Contact info
+            document.getElementById('review-contact').innerHTML = `
+                <strong>${t('review.phone')}:</strong> ${phone}<br>
+                <strong>${t('review.email')}:</strong> ${email}
+            `;
+
+            // Concerns
+            const ageText = t(`step3.${getAgeKey(age)}`) || age;
+            document.getElementById('review-concerns').innerHTML = `
+                <strong>${t('review.ageGroup')}:</strong> ${ageText}<br>
+                <strong>${t('review.description')}:</strong> ${concerns || t('review.notProvided')}
+            `;
+
+            // Availability
+            const slotTexts = slots.map(slot => formatSlot(slot)).join(', ');
+            document.getElementById('review-availability').innerHTML = `
+                <strong>${t('review.timeslots')}:</strong> ${slotTexts}
+            `;
+        }
+
+        function getAgeKey(value) {
+            const map = {
+                '0-2': 'infant',
+                '3-5': 'preschool',
+                '6-12': 'schoolAge',
+                '13-17': 'teen',
+                '18+': 'adult'
+            };
+            return map[value] || value;
+        }
+
+        function formatSlot(slot) {
+            const [day, time] = slot.split('-');
+            const dayMap = {
+                sun: t('step4.sunday'),
+                mon: t('step4.monday'),
+                tue: t('step4.tuesday'),
+                wed: t('step4.wednesday'),
+                thu: t('step4.thursday')
+            };
+            const timeMap = {
+                morning: t('step4.morning'),
+                midday: t('step4.midday')
+            };
+            return `${dayMap[day]} ${timeMap[time]}`;
+        }
+
+        // ========================================
+        // FORM SUBMISSION
+        // ========================================
+
+        async function handleSubmit(e) {
+            e.preventDefault();
+
+            if (state.isSubmitting) return;
+            if (!validateStep(5)) return;
+
+            state.isSubmitting = true;
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.classList.add('btn-loading');
+            submitBtn.querySelector('.spinner').style.display = 'block';
+            submitBtn.querySelector('.btn-text').style.visibility = 'hidden';
+
+            const formData = collectFormData();
+
+            try {
+                // Replace YOUR_FORM_ID with your actual Formspree form ID
+                const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    showSuccess();
+                    clearDraft();
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                alert(state.language === 'he'
+                    ? 'אירעה שגיאה. אנא נסו שוב.'
+                    : 'An error occurred. Please try again.');
+            } finally {
+                state.isSubmitting = false;
+                submitBtn.classList.remove('btn-loading');
+                submitBtn.querySelector('.spinner').style.display = 'none';
+                submitBtn.querySelector('.btn-text').style.visibility = 'visible';
+            }
+        }
+
+        function collectFormData() {
+            return {
+                patientName: document.getElementById('patient-name').value,
+                relationship: document.getElementById('relationship-value').value,
+                otherRelationship: document.getElementById('other-relationship-text').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                ageGroup: document.getElementById('age-group-value').value,
+                concerns: document.getElementById('concerns').value,
+                availableSlots: getSelectedSlots().join(', '),
+                language: state.language,
+                submittedAt: new Date().toISOString()
+            };
+        }
+
+        function showSuccess() {
+            document.getElementById('waitlist-form').style.display = 'none';
+            document.getElementById('success-container').classList.add('active');
+            document.querySelector('.progress-container').style.display = 'none';
+
+            announce(t('success.title'));
+        }
+
+        // ========================================
+        // AUTO-SAVE DRAFT
+        // ========================================
+
+        const DRAFT_KEY = 'waitlist-draft';
+
+        function saveDraft() {
+            const draft = {
+                formData: collectFormData(),
+                currentStep: state.currentStep,
+                language: state.language,
+                savedAt: Date.now()
+            };
+            localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+        }
+
+        function loadDraft() {
+            const saved = localStorage.getItem(DRAFT_KEY);
+            if (!saved) return;
+
+            try {
+                const draft = JSON.parse(saved);
+                const sevenDays = 7 * 24 * 60 * 60 * 1000;
+
+                if (Date.now() - draft.savedAt > sevenDays) {
+                    clearDraft();
+                    return;
+                }
+
+                // Restore form data
+                const data = draft.formData;
+                document.getElementById('patient-name').value = data.patientName || '';
+                document.getElementById('phone').value = data.phone || '';
+                document.getElementById('email').value = data.email || '';
+                document.getElementById('concerns').value = data.concerns || '';
+                document.getElementById('other-relationship-text').value = data.otherRelationship || '';
+
+                // Restore relationship selection
+                if (data.relationship) {
+                    document.getElementById('relationship-value').value = data.relationship;
+                    const card = document.querySelector(`.relationship-card[data-value="${data.relationship}"]`);
+                    if (card) {
+                        card.setAttribute('aria-checked', 'true');
+                        if (data.relationship === 'other') {
+                            document.getElementById('other-relationship-wrapper').classList.add('visible');
+                        }
+                    }
+                }
+
+                // Restore age selection
+                if (data.ageGroup) {
+                    document.getElementById('age-group-value').value = data.ageGroup;
+                    const btn = document.querySelector(`.age-btn[data-value="${data.ageGroup}"]`);
+                    if (btn) btn.setAttribute('aria-checked', 'true');
+                }
+
+                // Restore time slots
+                if (data.availableSlots) {
+                    data.availableSlots.split(', ').forEach(slot => {
+                        const cb = document.getElementById(slot);
+                        if (cb) cb.checked = true;
+                    });
+                    updateSlotCount();
+                }
+
+                // Restore language
+                if (draft.language) {
+                    setLanguage(draft.language);
+                }
+
+            } catch (e) {
+                clearDraft();
+            }
+        }
+
+        function clearDraft() {
+            localStorage.removeItem(DRAFT_KEY);
+        }
+
+        // ========================================
+        // ACCESSIBILITY
+        // ========================================
+
+        function announce(message) {
+            const announcer = document.getElementById('announcer');
+            announcer.textContent = '';
+            setTimeout(() => {
+                announcer.textContent = message;
+            }, 100);
+        }
+
+        // ========================================
+        // INITIALIZATION
+        // ========================================
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set initial language
+            setLanguage(state.language);
+
+            // Setup event handlers
+            setupRelationshipCards();
+            setupAgeButtons();
+            setupPhoneFormatting();
+            setupCharCounter();
+            setupTimeSlotGrid();
+
+            // Language toggle
+            document.querySelectorAll('.lang-toggle button').forEach(btn => {
+                btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+            });
+
+            // Form submission
+            document.getElementById('waitlist-form').addEventListener('submit', handleSubmit);
+
+            // Load saved draft
+            loadDraft();
+
+            // Auto-save on input
+            document.querySelectorAll('input, textarea').forEach(field => {
+                field.addEventListener('blur', saveDraft);
+            });
+        });
+    </script>
+</body>
+</html>
