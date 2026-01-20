@@ -932,9 +932,13 @@
             font-weight: 600;
         }
 
-        .radio-option:has(input[type="radio"]:checked) {
+        .radio-option.selected {
             border-color: var(--color-primary);
             background: var(--color-primary-light);
+        }
+
+        .onetime-field .error-message {
+            margin-top: var(--space-3);
         }
 
         /* ========================================
@@ -2204,6 +2208,14 @@
             document.querySelectorAll('input[name="oneTimeMeeting"]').forEach(radio => {
                 radio.addEventListener('change', () => {
                     document.getElementById('onetime-error').style.display = 'none';
+                    
+                    // Update selected class on parent
+                    document.querySelectorAll('.radio-option').forEach(option => {
+                        option.classList.remove('selected');
+                    });
+                    if (radio.checked) {
+                        radio.closest('.radio-option').classList.add('selected');
+                    }
                 });
             });
         }
@@ -2433,7 +2445,10 @@
                 // Restore one-time meeting preference
                 if (data.oneTimeMeeting) {
                     const radio = document.querySelector(`input[name="oneTimeMeeting"][value="${data.oneTimeMeeting}"]`);
-                    if (radio) radio.checked = true;
+                    if (radio) {
+                        radio.checked = true;
+                        radio.closest('.radio-option').classList.add('selected');
+                    }
                 }
 
                 // Restore language
