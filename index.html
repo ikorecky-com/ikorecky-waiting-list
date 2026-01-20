@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -875,6 +875,68 @@
             cursor: pointer;
         }
 
+        /* One-time meeting radio buttons */
+        .onetime-field {
+            margin-bottom: var(--space-6);
+        }
+
+        .onetime-field legend {
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-4);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            padding: var(--space-4);
+            background: var(--color-bg);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .radio-option:hover {
+            border-color: var(--color-primary);
+            background: var(--color-primary-light);
+        }
+
+        .radio-option input[type="radio"] {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            margin-top: 2px;
+            accent-color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        .radio-option label {
+            font-size: var(--font-size-base);
+            color: var(--color-text);
+            line-height: var(--line-height-relaxed);
+            margin: 0;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .radio-option input[type="radio"]:checked + label {
+            font-weight: 600;
+        }
+
+        .radio-option:has(input[type="radio"]:checked) {
+            border-color: var(--color-primary);
+            background: var(--color-primary-light);
+        }
+
         /* ========================================
            BUTTONS
            ======================================== */
@@ -1078,8 +1140,8 @@
             </div>
 
             <div class="lang-toggle" role="group" aria-label="Language selection">
-                <button type="button" data-lang="en" aria-pressed="true">EN</button>
-                <button type="button" data-lang="he" aria-pressed="false">עב</button>
+                <button type="button" data-lang="en" aria-pressed="false">EN</button>
+                <button type="button" data-lang="he" aria-pressed="true">עב</button>
             </div>
         </div>
     </header>
@@ -1522,6 +1584,42 @@
                         </div>
                     </div>
 
+                    <!-- One-time Meeting Preference -->
+                    <fieldset class="onetime-field" id="field-onetime">
+                        <legend>
+                            <span data-i18n="step5.oneTimeMeetingLabel">Would you like a one-time meeting until a regular spot opens?</span>
+                            <span class="required-mark" aria-hidden="true">*</span>
+                        </legend>
+                        <div class="radio-group" role="radiogroup" aria-required="true">
+                            <div class="radio-option">
+                                <input 
+                                    type="radio" 
+                                    id="onetime-yes" 
+                                    name="oneTimeMeeting" 
+                                    value="yes"
+                                    required
+                                    aria-required="true"
+                                >
+                                <label for="onetime-yes" data-i18n="step5.oneTimeMeetingYes">Yes, I would like a one-time meeting in the meantime</label>
+                            </div>
+                            <div class="radio-option">
+                                <input 
+                                    type="radio" 
+                                    id="onetime-no" 
+                                    name="oneTimeMeeting" 
+                                    value="no"
+                                    required
+                                    aria-required="true"
+                                >
+                                <label for="onetime-no" data-i18n="step5.oneTimeMeetingNo">No, I prefer to wait for a regular time slot</label>
+                            </div>
+                        </div>
+                        <span id="onetime-error" class="error-message">
+                            <span class="material-symbols-outlined">error</span>
+                            <span data-i18n="step5.oneTimeMeetingError">Please select an option</span>
+                        </span>
+                    </fieldset>
+
                     <!-- Consent -->
                     <div class="consent-field">
                         <input type="checkbox" id="consent" name="consent" required aria-required="true" aria-describedby="consent-error">
@@ -1586,7 +1684,7 @@
         const state = {
             currentStep: 1,
             totalSteps: 5,
-            language: localStorage.getItem('lang') || 'en',
+            language: localStorage.getItem('lang') || 'he',
             formData: {},
             isSubmitting: false
         };
@@ -1664,6 +1762,10 @@
                 'step5.concerns': 'Concerns',
                 'step5.availability': 'Availability',
                 'step5.edit': 'Edit',
+                'step5.oneTimeMeetingLabel': 'Would you like a one-time meeting until a regular spot opens?',
+                'step5.oneTimeMeetingYes': 'Yes, I would like a one-time meeting in the meantime',
+                'step5.oneTimeMeetingNo': 'No, I prefer to wait for a regular time slot',
+                'step5.oneTimeMeetingError': 'Please select an option',
                 'step5.consentLabel': 'I agree to be contacted about appointments and understand my information will be used for scheduling purposes only.',
                 'step5.consentError': 'Please agree to continue',
                 'step5.submit': 'Join Waiting List',
@@ -1758,6 +1860,10 @@
                 'step5.concerns': 'תיאור הקושי',
                 'step5.availability': 'זמינות',
                 'step5.edit': 'ערוך',
+                'step5.oneTimeMeetingLabel': 'האם אתם מעוניינים בפגישה חד פעמית עד שיתפנה מקום למפגש קבוע?',
+                'step5.oneTimeMeetingYes': 'כן, אשמח לפגישה חד פעמית בינתיים',
+                'step5.oneTimeMeetingNo': 'לא, אעדיף לחכות לשעה קבועה',
+                'step5.oneTimeMeetingError': 'אנא בחרו אפשרות',
                 'step5.consentLabel': 'אני מסכים/ה לקבל פניות לגבי תורים ומבין/ה שהמידע שלי ישמש לצורכי תיאום בלבד.',
                 'step5.consentError': 'אנא אשרו כדי להמשיך',
                 'step5.submit': 'הצטרפו לרשימת ההמתנה',
@@ -1903,6 +2009,7 @@
             phone: (value) => /^0[5][0-9][-\s]?[0-9]{3}[-\s]?[0-9]{4}$/.test(value.replace(/\s/g, '')),
             email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
             slots: () => getSelectedSlots().length >= 2,
+            oneTimeMeeting: () => document.querySelector('input[name="oneTimeMeeting"]:checked') !== null,
             consent: () => document.getElementById('consent').checked
         };
 
@@ -1955,6 +2062,10 @@
                     break;
 
                 case 5:
+                    if (!validators.oneTimeMeeting()) {
+                        document.getElementById('onetime-error').style.display = 'flex';
+                        isValid = false;
+                    }
                     if (!validators.consent()) {
                         document.getElementById('consent-error').style.display = 'flex';
                         isValid = false;
@@ -2084,6 +2195,15 @@
                     }
 
                     updateSlotCount();
+                });
+            });
+        }
+
+        // One-time meeting radio buttons
+        function setupOneTimeMeeting() {
+            document.querySelectorAll('input[name="oneTimeMeeting"]').forEach(radio => {
+                radio.addEventListener('change', () => {
+                    document.getElementById('onetime-error').style.display = 'none';
                 });
             });
         }
@@ -2221,6 +2341,7 @@
         }
 
         function collectFormData() {
+            const oneTimeMeeting = document.querySelector('input[name="oneTimeMeeting"]:checked');
             return {
                 patientName: document.getElementById('patient-name').value,
                 relationship: document.getElementById('relationship-value').value,
@@ -2230,6 +2351,7 @@
                 ageGroup: document.getElementById('age-group-value').value,
                 concerns: document.getElementById('concerns').value,
                 availableSlots: getSelectedSlots().join(', '),
+                oneTimeMeeting: oneTimeMeeting ? oneTimeMeeting.value : '',
                 language: state.language,
                 submittedAt: new Date().toISOString()
             };
@@ -2308,6 +2430,12 @@
                     updateSlotCount();
                 }
 
+                // Restore one-time meeting preference
+                if (data.oneTimeMeeting) {
+                    const radio = document.querySelector(`input[name="oneTimeMeeting"][value="${data.oneTimeMeeting}"]`);
+                    if (radio) radio.checked = true;
+                }
+
                 // Restore language
                 if (draft.language) {
                     setLanguage(draft.language);
@@ -2348,6 +2476,7 @@
             setupPhoneFormatting();
             setupCharCounter();
             setupTimeSlotGrid();
+            setupOneTimeMeeting();
 
             // Language toggle
             document.querySelectorAll('.lang-toggle button').forEach(btn => {
