@@ -42,22 +42,31 @@ This document outlines the task management and implementation plan for the speec
 
 ### Phase 2: Backend & Integration (Medium Priority)
 
-- [ ] **Task 2.1**: Configure Formspree form
+- [ ] **Task 2.1**: Google Sheets Integration (Recommended)
+  - Agent: Backend Developer
+  - Estimated Time: 2-3 hours
+  - Dependencies: None
+  - Description: Integrate form submissions with Google Sheets using Google Apps Script
+  - Documentation: See [GOOGLE_SHEETS_INTEGRATION.md](GOOGLE_SHEETS_INTEGRATION.md)
+  - Benefits: Direct data access, real-time updates, built-in analysis, free hosting
+  - Status: Documentation completed ✅
+
+- [ ] **Task 2.1.1**: Alternative - Configure Formspree form
   - Agent: Backend Developer
   - Estimated Time: 30 minutes
   - Dependencies: None
-  - Description: Set up Formspree account and update form ID
+  - Description: Set up Formspree account and update form ID (alternative to Google Sheets)
 
 - [ ] **Task 2.2**: Add email confirmation template
   - Agent: Backend Developer
   - Estimated Time: 1 hour
-  - Dependencies: Task 2.1
+  - Dependencies: Task 2.1 or 2.1.1
   - Description: Create bilingual email confirmation templates
 
 - [ ] **Task 2.3**: Implement webhook for CRM integration
   - Agent: Backend Developer
   - Estimated Time: 2 hours
-  - Dependencies: Task 2.1
+  - Dependencies: Task 2.1 or 2.1.1
   - Description: Set up webhook to sync form submissions with CRM system
 
 ### Phase 3: Testing & Quality Assurance (Medium Priority)

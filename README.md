@@ -24,7 +24,9 @@ A bilingual (Hebrew/English) waiting list form for speech therapy services with 
 
 ### Prerequisites
 
-- A Formspree account for form submissions (or alternative form backend)
+- A form backend service for collecting submissions:
+  - **Recommended**: Google Sheets (see [Google Sheets Integration Guide](GOOGLE_SHEETS_INTEGRATION.md))
+  - **Alternative**: Formspree account
 - A web server to host the static HTML file
 
 ### Installation
@@ -34,12 +36,19 @@ A bilingual (Hebrew/English) waiting list form for speech therapy services with 
    git clone https://github.com/ikorecky-com/ikorecky-waiting-list.git
    ```
 
-2. Update the Formspree form ID in `index.html`:
-   ```javascript
-   // Line ~2196
-   const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-   ```
-   Replace `YOUR_FORM_ID` with your actual Formspree form ID.
+2. Set up your form backend:
+   
+   **Option A: Google Sheets Integration (Recommended)**
+   - Follow the comprehensive [Google Sheets Integration Guide](GOOGLE_SHEETS_INTEGRATION.md)
+   - Provides direct data access, real-time updates, and built-in analysis tools
+   
+   **Option B: Formspree Integration**
+   - Update the Formspree form ID in `index.html`:
+     ```javascript
+     // Line ~2196
+     const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+     ```
+     Replace `YOUR_FORM_ID` with your actual Formspree form ID.
 
 3. Deploy to your web server or use GitHub Pages.
 
