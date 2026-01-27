@@ -237,12 +237,13 @@ function testSubmission() {
 
 1. **Set a Secret Key**: 
    - Find the line: `const EXPECTED_SECRET_KEY = 'YOUR_SECRET_KEY_HERE';`
-   - Replace with a random string (e.g., `'sk_live_abc123xyz789'`)
+   - Replace with a strong random string (e.g., `'wl_secret_a9f8e7d6c5b4a3f2e1d0c9b8a7f6e5d4'`)
+   - Generate a secure key using: `openssl rand -hex 32` or an online UUID generator
    - Keep this key secure - you'll need it for the web form
 
 2. **Configure Email Notifications** (Optional):
    - Find the line: `const recipientEmail = 'YOUR_EMAIL@example.com';`
-   - Replace with your actual email address
+   - Replace with your actual email address (e.g., `admin@yourcompany.com`)
    - Uncomment the `MailApp.sendEmail()` line to enable notifications
 
 3. **Verify Sheet Name**:
@@ -297,7 +298,7 @@ const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
 ```javascript
 // Google Sheets Web App URL (replace with your deployment URL)
 const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/ABC123.../exec';
-const SECRET_KEY = 'YOUR_SECRET_KEY_HERE'; // Must match the key in Apps Script
+const SECRET_KEY = 'wl_secret_a9f8e7d6c5b4a3f2e1d0c9b8a7f6e5d4'; // Must match the key in Apps Script
 
 // Prepare data for Google Sheets
 const submissionData = {
@@ -325,11 +326,13 @@ const response = await fetch(GOOGLE_SHEETS_URL, {
 });
 ```
 
-**Important Notes:**
+**Important Security Notes:**
+- ⚠️ **Secret Key Exposure**: The secret key will be visible in client-side code. This provides basic protection against casual abuse but is not cryptographically secure. For a public form, this is an acceptable trade-off.
+- The secret key primarily prevents automated spam and accidental submissions to your sheet
+- For higher security needs, consider implementing reCAPTCHA or server-side validation
 - Replace `GOOGLE_SHEETS_URL` with your actual Web App URL from Step 7
-- Replace `SECRET_KEY` with the same secret key you set in Apps Script
-- The `mode: 'no-cors'` is required for Google Apps Script endpoints
-- You won't be able to read the response body with `no-cors` mode, but the submission will still work
+- Replace `SECRET_KEY` with the same secret key you set in Apps Script (use a strong random string)
+- The `mode: 'no-cors'` is required for Google Apps Script endpoints but prevents reading response details
 
 #### Step 10: Update Success Message Handling
 
@@ -337,9 +340,24 @@ Since `no-cors` mode prevents reading the response, update the success handling:
 
 ```javascript
 // After the fetch call
-// With no-cors mode, we assume success if no error is thrown
-showSuccessMessage();
-clearFormData();
+try {
+    await fetch(GOOGLE_SHEETS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(submissionData)
+    });
+    
+    // With no-cors mode, we can't verify the response
+    // Show success message if no error was thrown
+    showSuccessMessage();
+    clearFormData();
+    
+} catch (error) {
+    // Handle network errors
+    showErrorMessage();
+    console.error('Submission error:', error);
+}
 
 function showSuccessMessage() {
     const successMessage = state.currentLanguage === 'he' 
@@ -348,6 +366,23 @@ function showSuccessMessage() {
     
     alert(successMessage);
     // Reset form or redirect to confirmation page
+}
+
+function showErrorMessage() {
+    const errorMessage = state.currentLanguage === 'he'
+        ? 'אירעה שגיאה בשליחת הטופס. אנא נסו שוב.'
+        : 'An error occurred submitting the form. Please try again.';
+    
+    alert(errorMessage);
+}
+```
+
+**Limitations with no-cors mode:**
+- ⚠️ **Cannot validate response**: The browser won't let you read the response body
+- ⚠️ **Limited error detection**: You'll only catch network errors, not submission errors
+- Success is assumed if the fetch doesn't throw an error
+- **Mitigation**: Monitor your Google Sheet for submissions and check Apps Script logs for errors
+- **Alternative**: Implement server-side validation or use a backend proxy if response validation is critical
 }
 ```
 
@@ -390,9 +425,14 @@ function showSuccessMessage() {
 #### Step 13: Implement Security Best Practices
 
 1. **Protect Your Secret Key**:
-   - Never commit the secret key to version control
-   - Use environment variables or a config file (not checked into Git)
-   - Rotate the key periodically
+   - ⚠️ **Note**: With client-side implementation, the secret key is visible to users
+   - This provides basic spam protection but is not cryptographically secure
+   - For public forms, this is acceptable as the key prevents casual automated abuse
+   - For higher security, consider:
+     - Implementing Google reCAPTCHA v3
+     - Adding server-side validation with a backend proxy
+     - Using Google Apps Script's built-in authentication for private forms
+   - Rotate the key if you suspect abuse
 
 2. **Restrict Sheet Access**:
    - Share the Google Sheet only with necessary team members
@@ -521,6 +561,52 @@ function sendFollowUpEmails() {
   }
 }
 ```
+
+#### Step 17: Production-Ready Alternatives (For Higher Security Needs)
+
+If you require better error handling, response validation, or enhanced security, consider these alternatives:
+
+**Option A: Backend Proxy with Response Validation**
+
+Create a simple server-side proxy (Node.js, Python, etc.) that:
+1. Receives form submissions from your website
+2. Validates data server-side
+3. Forwards to Google Sheets Web App
+4. Returns proper success/error responses to the client
+
+Benefits:
+- Full error handling and response validation
+- Can hide the secret key server-side
+- Better rate limiting and spam protection
+- Can add reCAPTCHA verification
+
+**Option B: Google Apps Script HtmlService**
+
+Instead of a public Web App, use Google Apps Script's HtmlService:
+1. Create an HTML form using Google Apps Script
+2. Embed it in your website via iframe
+3. Use `google.script.run` for secure communication
+4. Get proper success/failure callbacks
+
+Benefits:
+- Built-in authentication if needed
+- Better error handling
+- No CORS issues
+- More secure communication
+
+**Option C: Google Forms Integration**
+
+For simpler use cases:
+1. Create a Google Form with matching fields
+2. Pre-fill form data via URL parameters
+3. Automatically submit or redirect users
+4. Responses go directly to Google Sheets
+
+Benefits:
+- Zero coding required
+- Built-in spam protection
+- Official Google integration
+- Automatic validation
 
 ---
 
