@@ -35,16 +35,17 @@ Create the following columns in Row 1 (these match the form fields):
 |--------|-------------|-------------|
 | A | Timestamp | Automatic timestamp of submission |
 | B | Patient Name | Name of the patient |
-| C | Relationship | Relationship to patient (Parent, Self, Caregiver, etc.) |
-| D | Phone Number | Contact phone number |
-| E | Email | Contact email address |
-| F | Age Group | Patient's age group |
-| G | Concerns | Speech/communication concerns |
-| H | Preferred Time | Preferred appointment time slot |
-| I | One-Time Meeting | Preference for one-time meeting |
-| J | Consent Given | Consent checkbox status |
-| K | Language | Form language (Hebrew/English) |
-| L | Submission ID | Unique submission identifier |
+| C | Relationship | Relationship to patient (Parent, Self, Caregiver, Other) |
+| D | Other Relationship | Specified relationship if "Other" is selected |
+| E | Phone Number | Contact phone number |
+| F | Email | Contact email address |
+| G | Age Group | Patient's age group |
+| H | Concerns | Speech/communication concerns |
+| I | Available Slots | Selected time slots for appointments |
+| J | One-Time Meeting | Preference for one-time meeting (yes/no) |
+| K | Consent Given | Consent checkbox status |
+| L | Language | Form language (Hebrew/English) |
+| M | Submission ID | Unique submission identifier |
 
 **Recommended:** Apply header formatting:
 - Bold text
@@ -53,16 +54,16 @@ Create the following columns in Row 1 (these match the form fields):
 
 #### Step 3: Set Up Data Validation (Optional but Recommended)
 
-1. Select the **Age Group** column (F2:F1000)
+1. Select the **Age Group** column (G2:G1000)
 2. Click **Data → Data validation**
 3. Set criteria to "List of items"
 4. Enter: `0-3,4-6,7-12,13-17,18+`
 5. Click "Save"
 
 Repeat for other columns with specific values:
-- **Preferred Time**: `morning,afternoon,evening,flexible`
-- **One-Time Meeting**: `yes,no`
-- **Language**: `he,en`
+- **Relationship** (Column C): `parent,self,caregiver,other`
+- **One-Time Meeting** (Column J): `yes,no`
+- **Language** (Column L): `he,en`
 
 ---
 
@@ -116,21 +117,22 @@ function doPost(e) {
       throw new Error('Sheet not found: ' + SHEET_NAME);
     }
     
-    // Prepare row data
+    // Prepare row data (must match column order from Step 2)
     const timestamp = new Date();
     const rowData = [
-      timestamp,                          // Timestamp
-      data.patientName || '',             // Patient Name
-      data.relationship || '',            // Relationship
-      data.phone || '',                   // Phone Number
-      data.email || '',                   // Email
-      data.ageGroup || '',                // Age Group
-      data.concerns || '',                // Concerns
-      data.preferredTime || '',           // Preferred Time
-      data.oneTimeMeeting || '',          // One-Time Meeting
-      data.consentGiven ? 'Yes' : 'No',   // Consent Given
-      data.language || 'he',              // Language
-      data.submissionId || ''             // Submission ID
+      timestamp,                          // A: Timestamp
+      data.patientName || '',             // B: Patient Name
+      data.relationship || '',            // C: Relationship
+      data.otherRelationship || '',       // D: Other Relationship
+      data.phone || '',                   // E: Phone Number
+      data.email || '',                   // F: Email
+      data.ageGroup || '',                // G: Age Group
+      data.concerns || '',                // H: Concerns
+      data.availableSlots || '',          // I: Available Slots
+      data.oneTimeMeeting || '',          // J: One-Time Meeting
+      data.consentGiven ? 'Yes' : 'No',   // K: Consent Given
+      data.language || 'he',              // L: Language
+      data.submissionId || ''             // M: Submission ID
     ];
     
     // Append the data to the sheet
@@ -182,12 +184,12 @@ A new waiting list submission has been received:
 
 Timestamp: ${timestamp.toLocaleString('en-US', { timeZone: 'Asia/Jerusalem' })}
 Patient Name: ${data.patientName}
-Relationship: ${data.relationship}
+Relationship: ${data.relationship}${data.otherRelationship ? ' (' + data.otherRelationship + ')' : ''}
 Phone: ${data.phone}
 Email: ${data.email}
 Age Group: ${data.ageGroup}
 Concerns: ${data.concerns}
-Preferred Time: ${data.preferredTime}
+Available Slots: ${data.availableSlots || 'Not specified'}
 One-Time Meeting: ${data.oneTimeMeeting}
 Language: ${data.language === 'he' ? 'Hebrew' : 'English'}
 
@@ -211,11 +213,12 @@ function testSubmission() {
     secretKey: EXPECTED_SECRET_KEY,
     patientName: 'Test Patient',
     relationship: 'parent',
+    otherRelationship: '',
     phone: '050-1234567',
     email: 'test@example.com',
     ageGroup: '4-6',
-    concerns: 'Test concerns',
-    preferredTime: 'morning',
+    concerns: 'Test concerns for speech therapy',
+    availableSlots: 'sun-morning, mon-midday, wed-morning',
     oneTimeMeeting: 'yes',
     consentGiven: true,
     language: 'he',
@@ -300,20 +303,21 @@ const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
 const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/ABC123.../exec';
 const SECRET_KEY = 'wl_secret_a9f8e7d6c5b4a3f2e1d0c9b8a7f6e5d4'; // Must match the key in Apps Script
 
-// Prepare data for Google Sheets
+// Prepare data for Google Sheets (matching Apps Script column structure)
 const submissionData = {
     secretKey: SECRET_KEY,
     patientName: formData.patientName,
     relationship: formData.relationship,
+    otherRelationship: formData.otherRelationship || '',
     phone: formData.phone,
     email: formData.email,
     ageGroup: formData.ageGroup,
     concerns: formData.concerns,
-    preferredTime: formData.preferredTime,
+    availableSlots: formData.availableSlots,  // e.g., "sun-morning, mon-midday"
     oneTimeMeeting: formData.oneTimeMeeting,
-    consentGiven: formData.consentGiven,
+    consentGiven: formData.consentGiven || false,
     language: state.currentLanguage,
-    submissionId: formData.submittedAt
+    submissionId: new Date().toISOString()  // ISO timestamp for unique ID
 };
 
 const response = await fetch(GOOGLE_SHEETS_URL, {
@@ -465,12 +469,31 @@ function checkRateLimit(identifier) {
   return true;
 }
 
-// In doPost function, before processing:
-if (!checkRateLimit(data.email || data.phone)) {
-  return ContentService.createTextOutput(JSON.stringify({
-    'status': 'error',
-    'message': 'Too many submissions. Please try again later.'
-  })).setMimeType(ContentService.MimeType.JSON);
+// Usage in doPost function - add this after parsing data and before processing:
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+    
+    // Verify secret key
+    if (data.secretKey !== EXPECTED_SECRET_KEY) {
+      return ContentService.createTextOutput(JSON.stringify({
+        'status': 'error',
+        'message': 'Invalid secret key'
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    // Rate limiting check - add here
+    if (!checkRateLimit(data.email || data.phone)) {
+      return ContentService.createTextOutput(JSON.stringify({
+        'status': 'error',
+        'message': 'Too many submissions. Please try again later.'
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    // Continue with data processing...
+  } catch (error) {
+    // Error handling...
+  }
 }
 ```
 
