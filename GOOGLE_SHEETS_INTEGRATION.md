@@ -364,7 +364,7 @@ try {
 }
 
 function showSuccessMessage() {
-    const successMessage = state.currentLanguage === 'he' 
+    const successMessage = state.language === 'he' 
         ? 'תודה! הצטרפת בהצלחה לרשימת ההמתנה' 
         : 'Thank you! You have successfully joined the waiting list';
     
@@ -373,7 +373,7 @@ function showSuccessMessage() {
 }
 
 function showErrorMessage() {
-    const errorMessage = state.currentLanguage === 'he'
+    const errorMessage = state.language === 'he'
         ? 'אירעה שגיאה בשליחת הטופס. אנא נסו שוב.'
         : 'An error occurred submitting the form. Please try again.';
     
