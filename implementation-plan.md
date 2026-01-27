@@ -16,18 +16,21 @@ This document outlines the task management and implementation plan for the speec
 - [x] Material Icons integration
 - [x] Google Fonts integration (Assistant for Hebrew, Inter for English)
 - [x] Formspree integration for form submission
+- [x] **Phase 1.1**: Default language changed to Hebrew (he) with RTL direction
+- [x] **Phase 1.2**: One-time meeting preference section added with full validation and translations
 
 ## Upcoming Tasks
 
-### Phase 1: Core Enhancements (High Priority)
+### Phase 1: Core Enhancements (High Priority) ✅ COMPLETED
 
-- [ ] **Task 1.1**: Change default language to Hebrew (he) and direction to RTL
+- [x] **Task 1.1**: Change default language to Hebrew (he) and direction to RTL
   - Agent: Frontend Developer
   - Estimated Time: 15 minutes
   - Dependencies: None
   - Description: Update the default language in state initialization from 'en' to 'he'
+  - Status: ✅ Completed - Default language set to 'he', direction set to 'rtl', language toggle states updated
 
-- [ ] **Task 1.2**: Add one-time meeting preference section
+- [x] **Task 1.2**: Add one-time meeting preference section
   - Agent: Frontend Developer
   - Estimated Time: 1 hour
   - Dependencies: Task 1.1
@@ -35,6 +38,7 @@ This document outlines the task management and implementation plan for the speec
   - Radio button options (in Hebrew):
     - כן, אשמח לפגישה חד פעמית בינתיים
     - לא, אעדיף לחכות לשעה קבועה
+  - Status: ✅ Completed - Section added with validation, translations, and auto-save functionality
 
 ### Phase 2: Backend & Integration (Medium Priority)
 
