@@ -315,8 +315,8 @@ const submissionData = {
     concerns: formData.concerns,
     availableSlots: formData.availableSlots,  // e.g., "sun-morning, mon-midday"
     oneTimeMeeting: formData.oneTimeMeeting,
-    consentGiven: formData.consentGiven || false,
-    language: state.currentLanguage,
+    consentGiven: document.getElementById('consent').checked,  // Get consent directly
+    language: state.language,  // Current form language
     submissionId: new Date().toISOString()  // ISO timestamp for unique ID
 };
 
